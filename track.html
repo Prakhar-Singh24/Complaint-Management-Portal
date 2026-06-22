@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Complaint</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+
+        <nav class="navbar">
+            <div class="logo">
+                <img src="./images/logo.png" alt="Logo">
+                <div class="portal-name">
+                    <h2>Complaint</h2>
+                    <p>Management Portal</p>
+                </div>
+            </div>
+
+            <div class="navigator">
+                <ul>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./complaint.html">Submit Complaint</a></li>
+                    <li><a class="active" href="./track.html">Track</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="buttons">
+                <button class="login" id="loginUserBtn">Login</button>
+                <button class="register" id="registerUserBtn">Register</button>
+            </div>
+        </nav>
+
+    </header>
+
+    <!-- Track Complaint Section -->
+    <section class="track-page">
+        <div class="track-container">
+            <div class="track-header">
+
+                <div class="lock">
+                    <img src="./images/track-logo.svg" alt="Track Complaint">
+                </div>
+
+                <h1>Track Complaint</h1>
+                <p>
+                    Enter your Complaint ID to check the current status.
+                </p>
+            </div>
+
+            <form>
+
+                <div class="input-details">
+                    <label>Complaint ID</label>
+                    <input type="text" placeholder="Enter Complaint ID (e.g. CMP-2026-001)">
+
+                </div>
+
+                <div class="submit-section">
+                    <button type="submit" class="account-btn submit-complaint-btn">
+                        Search Complaint
+                    </button>
+                </div>
+
+            </form>
+
+            <!-- Status Card -->
+            <div class="status-card">
+                <h2>Complaint Details</h2>
+                <div class="status-info">
+                    <p>
+                        <strong>Complaint ID:</strong>
+                        No ID Choosen
+                    </p>
+
+                    <p>
+                        <strong>Status:</strong>
+                        <span class="status-progress">
+                            No Data
+                        </span>
+                    </p>
+
+                    <p>
+                        <strong>Category:</strong>
+                        No Data
+                    </p>
+
+                    <p>
+                        <strong>Submitted On:</strong>
+                        No Data
+                    </p>
+
+                    <p>
+                        <strong>Assigned Department:</strong>
+                        No Data
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="footer-login">
+        <p>
+            © 2026 Complaint Management Portal.
+            All Rights Reserved.
+        </p>
+    </footer>
+
+    <script src="./script/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+
+        <nav class="navbar">
+            <div class="logo">
+                <img src="./images/logo.png" alt="Logo">
+
+                <div class="portal-name">
+                    <h2>Complaint</h2>
+                    <p>Management Portal</p>
+                </div>
+            </div>
+
+            <div class="navigator">
+                <ul>
+                    <li><a class="active" href="./index.html">Home</a></li>
+                    <li><a href="./complaint.html">Submit Complaint</a></li>
+                    <li><a href="./track.html">Track</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./contact.html">Contact Us</a></li>
+                </ul>
+            </div>
+
+            <div class="buttons">
+                <button class="login" id="logout">Logout</button>
+                <button class="register">Dashboard</button>
+            </div>
+        </nav>
+
+    </header>
+
+    <!-- Dashboard Page -->
+    <section class="dashboard-page">
+
+        <!-- Welcome Section -->
+        <section class="dashboard-welcome">
+            <div class="welcome-text">
+                <h1>Welcome Back</h1>
+                <p>
+                    Manage and track all your complaints from one place.
+                </p>
+            </div>
+
+            <div class="welcome-image">
+                <img src="./images/user-dashboard-hero.png">
+            </div>
+
+        </section>
+
+        <!-- Dashboard Stats -->
+        <section class="dashboard-stats">
+            <div class="dashboard-card total">
+                <h2>0</h2>
+                <p>Total Complaints</p>
+            </div>
+
+            <div class="dashboard-card pending">
+                <h2>0</h2>
+                <p>Pending</p>
+            </div>
+
+            <div class="dashboard-card progress">
+                <h2>0</h2>
+                <p>In Progress</p>
+            </div>
+
+            <div class="dashboard-card resolved">
+                <h2>0</h2>
+                <p>Resolved</p>
+            </div>
+
+        </section>
+
+        <!-- Complaints Table -->
+        <section class="my-complaints">
+            <div class="table-header">
+                <h2>My Complaints</h2>
+
+                <button class="view-all-btn">
+                    View All
+                </button>
+            </div>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Complaint ID</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td colspan="4" class="no-data">
+                            No Complaints Found
+                        </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </section>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer-login">
+        <p>
+            © 2026 Complaint Management Portal.
+            All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <script src="./script/script.js"></script>
+
+</body>
+
+</html>

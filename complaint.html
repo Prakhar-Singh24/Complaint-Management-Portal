@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Management Portal</title>
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+
+        <nav class="navbar">
+            <div class="logo">
+                <img src="./images/logo.png" alt="Logo">
+                <div class="portal-name">
+                    <h2>Complaint</h2>
+                    <p>Management Portal</p>
+                </div>
+            </div>
+
+            <div class="navigator">
+                <ul>
+                    <li><a href="./index.html">Home</a> </li>
+                    <li><a class="active" href="./complaint.html">Submit Complaint</a> </li>
+                    <li><a href="./track.html">Track</a> </li>
+                    <li><a href="./about.html">About</a> </li>
+                    <li><a href="./contact.html">Contact Us</a> </li>
+                </ul>
+            </div>
+
+            <div class="buttons">
+                <button class="login" id="loginUserBtn">Login</button>
+                <button class="register" id="registerUserBtn">Register</button>
+            </div>
+        </nav>
+    </header>
+
+    <section class="complaint-page">
+        <div class="complaint-container">
+
+            <div class="complaint-header">
+                <div class="lock">
+                    <img src="./images/complaint-logo.svg">
+                </div>
+
+                <h1>Submit Complaint</h1>
+                <p>Fill in the details below to register your complaint.</p>
+            </div>
+
+            <form>
+                <!-- Title -->
+                <div class="section-title">
+                    Personal Information
+                </div>
+
+                <!-- Input -->
+                <div class="personal-row">
+
+                    <div class="input-details">
+                        <label>Full Name</label>
+                        <input type="text" placeholder="Enter your full name">
+                    </div>
+
+                    <div class="input-details">
+                        <label>Email Address</label>
+                        <input type="email" placeholder="Enter your email">
+                    </div>
+
+                    <div class="input-details">
+                        <label>Phone Number</label>
+                        <input type="tel" placeholder="Enter your phone number">
+                    </div>
+                </div>
+
+                <!-- Title -->
+                <div class="section-title">
+                    Complaint Details
+                </div>
+
+                <!-- Input -->
+                <div class="complaint-row">
+
+                    <div class="input-details">
+                        <label>Category</label>
+
+                        <select class="category">
+                            <option value="">Select Category</option>
+                            <option value="electricity">Electricity</option>
+                            <option value="water">Water Supply</option>
+                            <option value="road">Road & Transport</option>
+                            <option value="sanitation">Sanitation & Waste Management</option>
+                            <option value="internet">Internet & Network</option>
+                            <option value="streetlight">Street Light</option>
+                            <option value="public-property">Public Property Damage</option>
+                            <option value="security">Security & Safety</option>
+                            <option value="administration">Administration</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="input-details">
+                        <label>Subject</label>
+                        <input type="text" placeholder="Enter a short subject">
+                    </div>
+
+
+                </div>
+                <div class="input-details description">
+                    <label>Description</label>
+                    <textarea rows="6" cols="100"
+                        placeholder="Describe your complaint in detail..."></textarea>
+                </div>
+
+            </form>
+
+            <div class="submit-section">
+
+                <button type="submit" class="account-btn submit-complaint-btn">
+                    <img src="./images/submit-complaint-btn.svg">
+                    Submit Complaint
+                </button>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer-login">
+        <p>
+            © 2026 Complaint Management Portal.
+            All Rights Reserved.
+        </p>
+    </footer>
+
+    <script src="./script/script.js"></script>
+</body>
+
+</html>
