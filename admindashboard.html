@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+
+        <nav class="navbar">
+            <div class="logo">
+                <img src="./images/logo.png" alt="Logo">
+                <div class="portal-name">
+                    <h2>Complaint</h2>
+                    <p>Management Portal</p>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <img src="./images/admin-notification-bell.svg" class="notification">
+                <img src="./images/admin-profile.svg" class="profile">
+                <div>
+                    <h3>Admin</h3>
+                    <p>Administrator</p>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="admin-page">
+
+        <!-- Header -->
+        <div class="admin-header">
+            <h1>Admin Dashboard</h1>
+            <p>Overview of complaints and system activity.</p>
+        </div>
+
+        <!-- Stats -->
+        <div class="admin-stats">
+
+            <div class="admin-card total">
+                <h2>0</h2>
+                <p>Total Complaints</p>
+            </div>
+
+            <div class="admin-card pending">
+                <h2>0</h2>
+                <p>Pending Complaints</p>
+            </div>
+
+            <div class="admin-card progress">
+                <h2>0</h2>
+                <p>In Progress</p>
+            </div>
+
+            <div class="admin-card resolved">
+                <h2>0</h2>
+                <p>Resolved Complaints</p>
+            </div>
+
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="admin-actions">
+
+            <button class="admin-action-btn">
+                View Complaints
+            </button>
+
+            <button class="admin-action-btn">
+                Manage Users
+            </button>
+
+            <button class="admin-action-btn">
+                Generate Report
+            </button>
+
+        </div>
+
+        <!-- Complaint Filter -->
+        <div class="admin-filters">
+
+            <input type="text" placeholder="Search Complaint">
+
+            <select>
+                <option>All Status</option>
+                <option>Pending</option>
+                <option>In Progress</option>
+                <option>Resolved</option>
+            </select>
+
+            <select>
+                <option>All Categories</option>
+                <option>Electricity</option>
+                <option>Water Supply</option>
+                <option>Road & Transport</option>
+                <option>Internet</option>
+            </select>
+
+        </div>
+
+        <!-- Complaint table -->
+        <div class="admin-table">
+
+            <h2>Recent Complaints</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>User</th>
+                        <th>Category</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>CMP001</td>
+
+                        <td>No Data</td>
+
+                        <td>No Data</td>
+
+                        <td>
+                            <span class="status pending">
+                                Pending
+                            </span>
+                        </td>
+
+                        <td>No Data</td>
+
+                        <td>
+
+                            <div class="action-buttons">
+
+                                <button class="view-btn">
+                                    View
+                                </button>
+
+                                <button class="resolve-btn">
+                                    Resolve
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>CMP002</td>
+
+                        <td>No Data</td>
+
+                        <td>No Data</td>
+
+                        <td>
+                            <span class="status progress">
+                                In Progress
+                            </span>
+                        </td>
+
+                        <td>No Data</td>
+
+                        <td>
+
+                            <div class="action-buttons">
+
+                                <button class="view-btn">
+                                    View
+                                </button>
+
+                                <button class="resolve-btn">
+                                    Resolve
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    <tr>
+
+                        <td>CMP003</td>
+
+                        <td>No Data</td>
+
+                        <td>No Data</td>
+
+                        <td>
+                            <span class="status resolved">
+                                Resolved
+                            </span>
+                        </td>
+
+                        <td>No Data</td>
+
+                        <td>
+
+                            <div class="action-buttons">
+
+                                <button class="view-btn">
+                                    View
+                                </button>
+
+                                <button class="resolve-btn">
+                                    Resolve
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+        <!-- Registered Users Table -->
+        <div class="admin-table users-table">
+
+            <h2>Registered Users</h2>
+
+            <table>
+
+                <thead>
+                    <tr>
+                        <th>User ID</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr>
+
+                        <td>USR001</td>
+
+                        <td>No Data</td>
+
+                        <td>No Data</td>
+
+                        <td>User</td>
+
+                        <td>
+                            <span class="status resolved">
+                                Active
+                            </span>
+                        </td>
+
+                        <td class="action-buttons">
+                            <button class="view-btn">View</button>
+                            <button class="delete-btn">Delete</button>
+                        </td>
+
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </section>
+
+    <script src="./script/script.js"></script>
+</body>
+
+</html>
