@@ -24,7 +24,7 @@
 
             <div class="navigator">
                 <ul>
-                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="#" class="homeBtn">Home</a></li>
                     <li><a href="./complaint.html">Submit Complaint</a></li>
                     <li><a class="active" href="./track.html">Track</a></li>
                     <li><a href="./about.html">About</a></li>
@@ -59,13 +59,13 @@
 
                 <div class="input-details">
                     <label>Complaint ID</label>
-                    <input type="text" placeholder="Enter Complaint ID (e.g. CMP-2026-001)">
+                    <input id="trackComplaintId" type="text" placeholder="Enter Complaint ID (e.g. CMP-2026-001)">
 
                 </div>
 
                 <div class="submit-section">
-                    <button type="submit" class="account-btn submit-complaint-btn">
-                        Search Complaint
+                    <button id="trackBtn" type="submit" class="account-btn submit-complaint-btn">
+                        Track Complaint
                     </button>
                 </div>
 
@@ -77,29 +77,29 @@
                 <div class="status-info">
                     <p>
                         <strong>Complaint ID:</strong>
-                        No ID Choosen
+                        <span id="trackId">No ID Choosen</span>
                     </p>
 
                     <p>
                         <strong>Status:</strong>
-                        <span class="status-progress">
+                        <span class="status-progress" id="trackStatus">
                             No Data
                         </span>
                     </p>
 
                     <p>
                         <strong>Category:</strong>
-                        No Data
+                        <span id="trackCategory"> Data </span>
                     </p>
 
                     <p>
                         <strong>Submitted On:</strong>
-                        No Data
+                        <span id="trackSubject">No Data</span>
                     </p>
 
                     <p>
                         <strong>Assigned Department:</strong>
-                        No Data
+                        <span id="trackDepartment"> No Data </span>
                     </p>
                 </div>
             </div>

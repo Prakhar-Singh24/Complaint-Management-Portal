@@ -25,7 +25,7 @@
 
             <div class="navigator">
                 <ul>
-                    <li><a class="active" href="./index.html">Home</a></li>
+                    <li><a class="active" href="./userdashboard.html">Home</a></li>
                     <li><a href="./complaint.html">Submit Complaint</a></li>
                     <li><a href="./track.html">Track</a></li>
                     <li><a href="./about.html">About</a></li>
@@ -34,8 +34,7 @@
             </div>
 
             <div class="buttons">
-                <button class="login" id="logout">Logout</button>
-                <button class="register">Dashboard</button>
+                <button class="register" id="logout">Logout</button>
             </div>
         </nav>
 
@@ -47,7 +46,7 @@
         <!-- Welcome Section -->
         <section class="dashboard-welcome">
             <div class="welcome-text">
-                <h1>Welcome Back</h1>
+                <h1 id="welcomeUser">Welcome Back</h1>
                 <p>
                     Manage and track all your complaints from one place.
                 </p>
@@ -62,22 +61,22 @@
         <!-- Dashboard Stats -->
         <section class="dashboard-stats">
             <div class="dashboard-card total">
-                <h2>0</h2>
+                <h2 id="totalComplaints">0</h2>
                 <p>Total Complaints</p>
             </div>
 
             <div class="dashboard-card pending">
-                <h2>0</h2>
+                <h2 id="pendingComplaints">0</h2>
                 <p>Pending</p>
             </div>
 
             <div class="dashboard-card progress">
-                <h2>0</h2>
+                <h2 id="progressComplaints">0</h2>
                 <p>In Progress</p>
             </div>
 
             <div class="dashboard-card resolved">
-                <h2>0</h2>
+                <h2 id="resolvedComplaints">0</h2>
                 <p>Resolved</p>
             </div>
 
@@ -103,7 +102,7 @@
                     </tr>
                 </thead>
 
-                <tbody>
+                <tbody id="complaintsTableBody">
                     <tr>
                         <td colspan="4" class="no-data">
                             No Complaints Found

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complaint Details</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header>
+
+        <nav class="navbar">
+
+            <div class="logo">
+                <img src="./images/logo.png" alt="Logo">
+
+                <div class="portal-name">
+                    <h2>Complaint</h2>
+                    <p>Management Portal</p>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <img src="./images/admin-notification-bell.svg" class="notification">
+                <img src="./images/admin-profile.svg" class="profile">
+
+                <div>
+                    <h3>Admin</h3>
+                    <p>Administrator</p>
+                </div>
+            </div>
+
+        </nav>
+
+    </header>
+
+    <section class="details-page">
+
+        <div class="details-header">
+
+            <h1>Complaint Details</h1>
+
+            <p>
+                View complete complaint information.
+            </p>
+
+        </div>
+
+        <!-- Complaint Summary -->
+        <div class="details-card complaint-summary">
+
+            <div class="summary-item">
+
+                <img src="./images/complaint-logo.svg" class="circle-lightblue">
+
+                <div>
+                    <h3>Complaint ID</h3>
+                    <h2>CMP001</h2>
+                </div>
+
+            </div>
+
+            <div class="summary-item">
+
+                <h3>Status</h3>
+
+                <span class="status pending">
+                    Pending
+                </span>
+
+            </div>
+
+        </div>
+
+        <!-- Information Cards -->
+        <div class="details-grid">
+
+            <div class="details-card">
+
+                <h2>Personal Information</h2>
+
+                <div class="info-row">
+                    <strong>Full Name</strong>
+                    <span>No Data</span>
+                </div>
+
+                <div class="info-row">
+                    <strong>Email</strong>
+                    <span>No Data</span>
+                </div>
+
+                <div class="info-row">
+                    <strong>Phone</strong>
+                    <span>No Data</span>
+                </div>
+
+            </div>
+
+            <div class="details-card">
+
+                <h2>Complaint Information</h2>
+
+                <div class="info-row">
+                    <strong>Category</strong>
+                    <span>Electricity</span>
+                </div>
+
+                <div class="info-row">
+                    <strong>Subject</strong>
+                    <span>Street Light Issue</span>
+                </div>
+
+                <div class="description-section">
+
+                    <strong>Description</strong>
+
+                    <div class="description-box">
+                        No data available.
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Submission Date -->
+        <div class="details-card">
+
+            <div class="info-row">
+                <strong>Submitted On</strong>
+                <span>No Data</span>
+            </div>
+
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="details-actions">
+
+            <button class="resolve-btn">
+                Resolve Complaint
+            </button>
+
+            <button class="view-btn" onclick="history.back()">
+                Back
+            </button>
+
+        </div>
+
+    </section>
+
+    <footer class="footer-login">
+        <p>
+            © 2026 Complaint Management Portal.
+            All Rights Reserved.
+        </p>
+    </footer>
+
+    <script src="./script/script.js"></script>
+
+</body>
+
+</html>
