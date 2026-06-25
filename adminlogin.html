@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login to Complaint Management System</title>
+    <title>Admin Login</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
@@ -14,81 +15,81 @@
     <header>
 
         <nav class="navbar">
+
             <div class="logo">
                 <img src="./images/logo.png" alt="Logo">
+
                 <div class="portal-name">
                     <h2>Complaint</h2>
                     <p>Management Portal</p>
                 </div>
+
             </div>
 
             <div class="navigator">
                 <ul>
-                    <li><a href="./index.html">Home</a> </li>
-                    <li><a href="./complaint.html">Submit Complaint</a> </li>
-                    <li><a href="./track.html">Track</a> </li>
-                    <li><a href="./about.html">About</a> </li>
-                    <li><a href="./contact.html">Contact Us</a> </li>
+                    <li><a href="./index.html">Home</a></li>
+                    <li><a href="./about.html">About</a></li>
+                    <li><a href="./contact.html">Contact Us</a></li>
                 </ul>
             </div>
 
-            <div class="buttons">
-                <button class="login" id="loginUserBtn">Login</button>
-                <button class="register" id="registerUserBtn">Register</button>
-            </div>
         </nav>
+
     </header>
 
-
     <section class="login-page">
+
         <div class="login-container">
+
             <div class="lock">
                 <img src="./images/login-logo.svg">
             </div>
 
             <div class="login-header">
-                <h1>Welcome Back</h1>
-                <p>Login to access your complaints and track their status.</p>
+                <h1>Admin Login</h1>
+                <p>
+                    Login to manage complaints and users.
+                </p>
             </div>
 
             <form>
+
                 <div class="input-details">
-                    <label>Email Address</label>
-                    <input id="loginEmail" type="email" placeholder="Enter your email">
+                    <label>Admin Email</label>
+
+                    <input id="adminEmail" type="email" placeholder="Enter admin email">
                 </div>
 
                 <div class="input-details">
                     <label>Password</label>
-                    <input id="loginPassword" type="password" placeholder="Enter your password">
+
+                    <input id="adminPassword" type="password" placeholder="Enter password">
                 </div>
 
-                <a href="#" class="forgot-password">Forgot Password?</a>
+                <button id="adminLoginBtn" type="submit" class="account-btn">
 
-                <button id="loginBtn" type="submit" class="account-btn">
                     Login
+
                 </button>
+
             </form>
 
-            <p class="account-link">
-                Don't have an account?
-                <a href="register.html">Register</a>
-            </p>
-
-            <p class="account-link">
-                <a href="adminlogin.html">Login as Admin</a>
-            </p>
         </div>
 
     </section>
 
     <footer class="footer-login">
+
         <p>
             © 2026 Complaint Management Portal.
             All Rights Reserved.
         </p>
+
     </footer>
 
     <script src="./script/script.js"></script>
+
 </body>
 
 </html>

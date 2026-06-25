@@ -59,7 +59,7 @@
 
                 <div>
                     <h3>Complaint ID</h3>
-                    <h2>CMP001</h2>
+                    <h2 id="detailComplaintId">CMP001</h2>
                 </div>
 
             </div>
@@ -68,7 +68,7 @@
 
                 <h3>Status</h3>
 
-                <span class="status pending">
+                <span class="status pending" id="detailStatus">
                     Pending
                 </span>
 
@@ -85,17 +85,17 @@
 
                 <div class="info-row">
                     <strong>Full Name</strong>
-                    <span>No Data</span>
+                    <span id="detailUserName">No Data</span>
                 </div>
 
                 <div class="info-row">
                     <strong>Email</strong>
-                    <span>No Data</span>
+                    <span id="detailUserEmail">No Data</span>
                 </div>
 
                 <div class="info-row">
                     <strong>Phone</strong>
-                    <span>No Data</span>
+                    <span id="detailUserPhone">No Data</span>
                 </div>
 
             </div>
@@ -106,19 +106,19 @@
 
                 <div class="info-row">
                     <strong>Category</strong>
-                    <span>Electricity</span>
+                    <span id="detailCategory">No Data</span>
                 </div>
 
                 <div class="info-row">
                     <strong>Subject</strong>
-                    <span>Street Light Issue</span>
+                    <span id="detailSubject">No Data</span>
                 </div>
 
                 <div class="description-section">
 
                     <strong>Description</strong>
 
-                    <div class="description-box">
+                    <div class="description-box" id="detailDescription">
                         No data available.
                     </div>
 
@@ -133,7 +133,7 @@
 
             <div class="info-row">
                 <strong>Submitted On</strong>
-                <span>No Data</span>
+                <span id="detailDate">No Data</span>
             </div>
 
         </div>
@@ -141,13 +141,11 @@
         <!-- Action Buttons -->
         <div class="details-actions">
 
-            <button class="resolve-btn">
-                Resolve Complaint
-            </button>
-
-            <button class="view-btn" onclick="history.back()">
-                Back
-            </button>
+            <a href="./admindashboard.html">
+                <button class="view-btn" id="backToDashboardBtn">
+                    Back
+                </button>
+            </a>
 
         </div>
 
