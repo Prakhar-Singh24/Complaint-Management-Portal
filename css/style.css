@@ -921,6 +921,20 @@ td {
     padding: 30px;
 }
 
+.view-my-complaint-btn {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 8px;
+    background: #0033cc;
+    color: white;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.view-my-complaint-btn:hover {
+    transform: translateY(-2px);
+}
+
 .delete-my-complaint-btn {
     padding: 8px 15px;
     border: none;
@@ -934,6 +948,7 @@ td {
 .delete-my-complaint-btn:hover {
     transform: translateY(-2px);
 }
+
 
 /* Contact Page */
 .contact-page {
@@ -1411,110 +1426,9 @@ td {
     min-width: 180px;
 }
 
-/* Manage Users */
 
-.manage-users-page {
-    min-height: 100vh;
-    background: #f5f8ff;
-    padding: 50px 80px;
-}
-
-.manage-users-header {
-    margin-bottom: 35px;
-}
-
-.manage-users-header h1 {
-    font-size: 48px;
-    color: #0d1b52;
-    margin-bottom: 10px;
-}
-
-.manage-users-header p {
-    color: #666;
-}
-
-.total-users-card {
-    width: 250px;
-    margin-bottom: 30px;
-}
-
-.user-search-section {
-    margin-bottom: 30px;
-}
-
-.user-search-section input {
-    width: 350px;
-    padding: 14px;
-    border: 1px solid #d9d9d9;
-    border-radius: 10px;
-    outline: none;
-}
-
-/* Reports Page */
-.reports-page {
-    min-height: 100vh;
-    background: #f5f8ff;
-    padding: 50px 80px;
-}
-
-.reports-header {
-    margin-bottom: 40px;
-}
-
-.reports-header h1 {
-    font-size: 48px;
-    color: #0d1b52;
-    margin-bottom: 10px;
-}
-
-.reports-header p {
-    color: #666;
-}
-
-.reports-stats {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
-    margin-bottom: 40px;
-}
-
-.report-section {
-    background: white;
-    padding: 30px;
-    border-radius: 20px;
-    margin-bottom: 30px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
-}
-
-.report-section h2 {
-    margin-bottom: 25px;
-    color: #0d1b52;
-}
-
-.report-list {
-    display: flex;
-    flex-direction: column;
-    gap: 15px;
-}
-
-.report-item {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid #e5e5e5;
-}
-
-.activity-box {
-    padding: 20px;
-    border-radius: 10px;
-    background: #f8faff;
-    color: #666;
-}
-
-.report-btn-container {
-    text-align: center;
-}
-
-.report-btn-container .admin-action-btn {
-    padding: 12px 25px;
+/* User Complaint page */
+.user-details-grid {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }

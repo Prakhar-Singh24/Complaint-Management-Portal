@@ -576,6 +576,12 @@ if (currentPage === "userdashboard.html") {
                     <td>${complaint.date}</td>
                      <td>
                          <button
+                            class="view-my-complaint-btn"
+                            data-id="${complaint.complaintId}">
+                             View
+                        </button>
+                     
+                        <button
                             class="delete-my-complaint-btn"
                             data-id="${complaint.complaintId}">
                              Delete
@@ -1082,6 +1088,27 @@ document.addEventListener("click", function (e) {
     }
 });
 
+
+// View Complaint Details (User View)
+document.addEventListener("click", function (e) {
+
+    if (
+        e.target.classList.contains(
+            "view-my-complaint-btn"
+        )
+    ) {
+
+        let complaintId =
+            e.target.dataset.id;
+
+        window.location.href =
+            `usercomplaintdetails.html?id=${complaintId}`;
+
+    }
+
+});
+
+
 // Delete Complaint Button (User Dashboard)
 document.addEventListener("click", function (e) {
 
@@ -1123,6 +1150,64 @@ document.addEventListener("click", function (e) {
     }
 
 });
+
+
+// User Complaint Details (User View)
+if (currentPage === "usercomplaintdetails.html") {
+
+    let params =
+        new URLSearchParams(
+            window.location.search
+        );
+
+    let complaintId =
+        params.get("id");
+
+    let complaints =
+        JSON.parse(
+            localStorage.getItem(
+                "complaints"
+            )
+        ) || [];
+
+    let complaint =
+        complaints.find(c =>
+            c.complaintId === complaintId
+        );
+
+    if (complaint) {
+
+        document.getElementById(
+            "detailComplaintId"
+        ).innerText =
+            complaint.complaintId;
+
+        document.getElementById(
+            "detailCategory"
+        ).innerText =
+            complaint.category;
+
+        document.getElementById(
+            "detailSubject"
+        ).innerText =
+            complaint.subject;
+
+        document.getElementById(
+            "detailDescription"
+        ).innerText =
+            complaint.description;
+
+        document.getElementById(
+            "detailStatus"
+        ).innerText =
+            complaint.status;
+
+        document.getElementById(
+            "detailDate"
+        ).innerText =
+            complaint.date;
+    }
+}
 
 
 //Complaint Deatils (Admin View)
