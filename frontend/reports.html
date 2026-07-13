@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="./css/responsive.css">
+    <title>Reports</title>
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+
+        <nav class="navbar">
+            <div class="logo">
+                <img src="./images/logo.png" alt="Logo">
+                <div class="portal-name">
+                    <h2>Complaint</h2>
+                    <p>Management Portal</p>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <div class="buttons">
+                    <button class="login" id="dashboard">Dashboard</button>
+                    <button class="register" id="logout">Logout</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <section class="details-page">
+
+        <div class="reports-header">
+            <h1>Reports & Analytics</h1>
+            <p>View complaint statistics and system activity.</p>
+    </div>
+    
+    <div class="reports-stats">
+        
+        <div class="admin-card total">
+            <h2 id="reportTotal">0</h2>
+            <p>Total Complaints</p>
+        </div>
+        
+        <div class="admin-card pending">
+            <h2 id="reportPending">0</h2>
+            <p>Pending</p>
+        </div>
+        
+        <div class="admin-card progress">
+            <h2 id="reportProgress">0</h2>
+            <p>In Progress</p>
+        </div>
+
+        <div class="admin-card resolved">
+            <h2 id="reportResolved">0</h2>
+            <p>Resolved</p>
+        </div>
+
+    </div>
+
+    <div class="report-section">
+
+        <h2>Category Breakdown</h2>
+        
+        <div class="report-list">
+
+            <div class="report-item">
+                <span>Electricity</span>
+                <span id="electricityCount">0</span>
+            </div>
+
+            <div class="report-item">
+                <span>Water Supply</span>
+                <span id="waterCount">0</span>
+            </div>
+
+            <div class="report-item">
+                <span>Road & Transport</span>
+                <span id="roadCount">0</span>
+            </div>
+
+            <div class="report-item">
+                <span>Sanitation & Waste Management</span>
+                <span id="sanitationCount">0</span>
+            </div>
+
+            <div class="report-item">
+                <span>Internet & Network</span>
+                <span id="internetCount">0</span>
+            </div>
+
+            <div class="report-item">
+                <span>Street Lights</span>
+                <span id="streetlightCount">0</span>
+            </div>
+
+            <div class="report-item">
+                <span>Public Property Damage</span>
+                <span id="publicPropertyCount">0</span>
+            </div>
+
+            <div class="report-item">
+                <span>Security & Safety</span>
+                <span id="securityCount">0</span>
+            </div>
+            
+            <div class="report-item">
+                <span>Administration</span>
+                <span id="administrationCount">0</span>
+            </div>
+            
+            <div class="report-item">
+                <span>Other</span>
+                <span id="otherCount">0</span>
+            </div>
+            
+        </div>
+        
+    </div>
+
+    <div class="details-actions">
+
+        <a href="./admindashboard.html">
+            <button class="view-btn" id="backToDashboardBtn">
+                Back
+            </button>
+        </a>
+        
+    </div>
+
+</section>
+
+    <footer class="footer-login">
+        <p>
+            © 2026 Complaint Management Portal.
+            All Rights Reserved.
+        </p>
+    </footer>
+
+    <script src="./script/script.js"></script>
+</body>
+
+</html>
