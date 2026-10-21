@@ -128,7 +128,7 @@ if (adminLoginBtn) {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/login",
+                "https://complaint-management-portal-m8jc.onrender.com/api/auth/login",
                 {
                     method: "POST",
 
@@ -398,7 +398,7 @@ document.addEventListener("click", async function (e) {
 
         const response = await fetch(
 
-            `http://localhost:5000/api/complaints/${complaintId}`,
+            `https://complaint-management-portal-m8jc.onrender.com/api/complaints/${complaintId}`,
 
             {
 
@@ -484,7 +484,7 @@ async function loadComplaintForEdit() {
         const response =
             await fetch(
 
-                `http://localhost:5000/api/complaints/${complaintId}`,
+                `https://complaint-management-portal-m8jc.onrender.com/api/complaints/${complaintId}`,
 
                 {
 
@@ -591,7 +591,7 @@ if (updateComplaintBtn) {
                 const response =
                     await fetch(
 
-                        `http://localhost:5000/api/complaints/${complaintId}`,
+                        `https://complaint-management-portal-m8jc.onrender.com/api/complaints/${complaintId}`,
 
                         {
 
@@ -796,7 +796,7 @@ if (registerBtn) {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/register",
+                "https://complaint-management-portal-m8jc.onrender.com/api/auth/register",
                 {
                     method: "POST",
 
@@ -937,7 +937,7 @@ if (loginBtn) {
         try {
 
             const response = await fetch(
-                "http://localhost:5000/api/auth/login",
+                "https://complaint-management-portal-m8jc.onrender.com/api/auth/login",
                 {
                     method: "POST",
 
@@ -1103,7 +1103,7 @@ if (resetPasswordBtn) {
 
             const response = await fetch(
 
-                "http://localhost:5000/api/auth/forgot-password",
+                "https://complaint-management-portal-m8jc.onrender.com/api/auth/forgot-password",
 
                 {
 
@@ -1298,7 +1298,7 @@ if (submitComplaintBtn) {
             const token = localStorage.getItem("token");
 
             const response = await fetch(
-                "http://localhost:5000/api/complaints",
+                "https://complaint-management-portal-m8jc.onrender.com/api/complaints",
                 {
 
                     method: "POST",
@@ -1403,7 +1403,7 @@ if (trackBtn) {
 
             const response = await fetch(
 
-                `http://localhost:5000/api/complaints/track/${complaintId}`
+                `https://complaint-management-portal-m8jc.onrender.com/api/complaints/track/${complaintId}`
 
             );
 
@@ -1525,7 +1525,7 @@ async function loadDashboard() {
 
         const response = await fetch(
 
-            "http://localhost:5000/api/complaints/my",
+            "https://complaint-management-portal-m8jc.onrender.com/api/complaints/my",
 
             {
 
@@ -1848,7 +1848,7 @@ async function loadComplaints() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/admin/complaints",
+            "https://complaint-management-portal-m8jc.onrender.com/api/admin/complaints",
             {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem("token")}`
@@ -1890,7 +1890,7 @@ async function loadUsers() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/admin/users",
+            "https://complaint-management-portal-m8jc.onrender.com/api/admin/users",
             {
                 headers: {
                     Authorization:
@@ -2148,7 +2148,7 @@ async function loadReports() {
     try {
 
         const response = await fetch(
-            "http://localhost:5000/api/admin/complaints",
+            "https://complaint-management-portal-m8jc.onrender.com/api/admin/complaints",
             {
                 headers: {
                     Authorization:
@@ -2297,7 +2297,7 @@ async function loadUserDetails() {
         const response =
             await fetch(
 
-                `http://localhost:5000/api/admin/users/${userId}`,
+                `https://complaint-management-portal-m8jc.onrender.com/api/admin/users/${userId}`,
 
                 {
 
@@ -2384,7 +2384,7 @@ document.addEventListener("click", async function (e) {
 
         const response =
             await fetch(
-                `http://localhost:5000/api/admin/complaints/${complaintId}/status`,
+                `https://complaint-management-portal-m8jc.onrender.com/api/admin/complaints/${complaintId}/status`,
                 {
                     method: "PUT",
 
@@ -2576,7 +2576,7 @@ async function loadUserComplaintDetails() {
         const response =
             await fetch(
 
-                `http://localhost:5000/api/complaints/${complaintId}`,
+                `https://complaint-management-portal-m8jc.onrender.com/api/complaints/${complaintId}`,
 
                 {
 
@@ -2691,7 +2691,7 @@ async function loadAdminComplaintDetails() {
         const response =
             await fetch(
 
-                `http://localhost:5000/api/complaints/${complaintId}`,
+                `https://complaint-management-portal-m8jc.onrender.com/api/complaints/${complaintId}`,
 
                 {
 
@@ -2828,7 +2828,7 @@ document.addEventListener("click", async function (e) {
         const response =
             await fetch(
 
-                `http://localhost:5000/api/admin/users/${userId}`,
+                `https://complaint-management-portal-m8jc.onrender.com/api/admin/users/${userId}`,
 
                 {
 
@@ -2898,7 +2898,7 @@ document.addEventListener("click", async function (e) {
         const response =
             await fetch(
 
-                `http://localhost:5000/api/admin/complaints/${complaintId}`,
+                `https://complaint-management-portal-m8jc.onrender.com/api/admin/complaints/${complaintId}`,
 
                 {
 
