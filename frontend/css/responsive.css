@@ -416,6 +416,18 @@
         padding: 20px;
     }
 
+    .dashboard-page,
+    .hero,
+    .complaint-page,
+    .track-page,
+    .about-hero,
+    .contact-page,
+    .details-page,
+    .login-page,
+    .admin-page {
+        margin-top: 40px;
+    }
+
 }
 
 
