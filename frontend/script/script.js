@@ -1635,7 +1635,8 @@ async function loadDashboard() {
                         <button
                         class="edit-btn"
                         data-id="${complaint._id}"
-                        ${complaint.status === "Resolved" ? "disabled" : ""}>
+                        ${complaint.status === "Resolved" ? "disabled" : ""}
+                        ${complaint.status === "In Progress" ? "disabled" : ""}>
                         Edit
                         </button>
                         
