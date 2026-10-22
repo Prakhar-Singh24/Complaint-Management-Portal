@@ -884,7 +884,7 @@ if (loginBtn) {
 
         e.preventDefault();
 
-        let email =
+        let identifier =
             document.getElementById("loginEmail")
                 .value.trim();
 
@@ -895,34 +895,45 @@ if (loginBtn) {
         loginPageEmail.innerText = "";
         loginPagePassword.innerText = "";
 
-        if (email === "" && password === "") {
-
+        if (identifier === "" && password === "") {
             loginPageEmail.innerText =
-                "Email is required *";
-
+                "Email or mobile number is required *";
             loginPagePassword.innerText =
-                "Password required *";
-
+                "Password is required *";
             return;
         }
 
-        if (email === "") {
-
+        if (identifier === "") {
             loginPageEmail.innerText =
-                "Email is required *";
-
+                "Email or mobile number is required *";
             return;
         }
 
-        let loginEmailPattern =
-            /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-        if (!loginEmailPattern.test(email)) {
-
-            loginPageEmail.innerText =
-                "Enter a valid email address *";
-
+        if (password === "") {
+            loginPagePassword.innerText =
+                "Password is required *";
             return;
+        }
+
+        const isEmail = identifier.includes("@");
+
+        if (isEmail) {
+            const emailPattern =
+                /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(identifier)) {
+                loginPageEmail.innerText =
+                    "Enter a valid email address *";
+                return;
+            }
+        } else {
+            const phonePattern = /^\d{10}$/;
+
+            if (!phonePattern.test(identifier)) {
+                loginPageEmail.innerText =
+                    "Enter a valid email or 10-digit mobile number *";
+                return;
+            }
         }
 
 
@@ -947,11 +958,12 @@ if (loginBtn) {
 
                     body: JSON.stringify({
 
-                        email: email,
+                        identifier: identifier,
 
                         password: password
 
                     })
+
 
                 }
             );
@@ -994,9 +1006,12 @@ if (loginBtn) {
                 }
             }
 
-            else {
 
-                if (data.field === "email") {
+            else {
+                if (
+                    data.field === "email" ||
+                    data.field === "identifier"
+                ) {
                     loginPageEmail.innerText = data.message;
                 }
 
@@ -1004,7 +1019,15 @@ if (loginBtn) {
                     loginPagePassword.innerText = data.message;
                 }
 
+                if (
+                    data.field !== "email" &&
+                    data.field !== "identifier" &&
+                    data.field !== "password"
+                ) {
+                    loginPageEmail.innerText = data.message;
+                }
             }
+
 
         }
 
@@ -2753,7 +2776,7 @@ async function loadAdminComplaintDetails() {
         statusElement.className = "status";
 
         if (complaint.status === "Pending") {
-            
+
             statusElement.classList.add("pending");
 
         }
