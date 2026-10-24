@@ -428,6 +428,23 @@
         margin-top: 40px;
     }
 
+    .progress-updates-card {
+        padding: 20px;
+        border-radius: 14px;
+    }
+
+    .progress-updates-card h2 {
+        font-size: 21px;
+    }
+
+    .progress-updates-card h3 {
+        font-size: 18px;
+    }
+
+    #progressUpdateForm button {
+        width: 100%;
+    }
+
 }
 
 
@@ -769,6 +786,14 @@
 
     .contact-item a {
         justify-content: center;
+    }
+
+    .progress-updates-card {
+        padding: 16px;
+    }
+
+    .progress-update-item {
+        padding: 15px;
     }
 
 }

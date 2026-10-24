@@ -1228,6 +1228,12 @@ td {
     font-weight: 100;
 }
 
+.departmentDropdown {
+    border: none;
+    font-size: 17px;
+    font-weight: 100;
+}
+
 .status.pending {
     background: #f6c8c8;
     color: #ff0000;
@@ -1592,4 +1598,115 @@ p,
 td,
 .description-box {
     overflow-wrap: break-word;
+}
+
+
+/* Complaint Progress Updates */
+.progress-updates-card {
+    margin-top: 25px;
+    padding: 30px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 8px 24px rgba(15, 23, 42, 0.08);
+}
+
+.progress-updates-card h2 {
+    margin: 0 0 25px;
+    color: #102653;
+    font-size: 25px;
+}
+
+.progress-updates-card h3 {
+    margin: 30px 0 18px;
+    color: #102653;
+    font-size: 20px;
+}
+
+#progressUpdateForm {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+#progressUpdateForm .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+#progressUpdateForm label {
+    color: #263650;
+    font-weight: 600;
+    font-size: 15px;
+}
+
+#progressUpdateForm textarea,
+#progressUpdateForm input[type="date"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 14px;
+    border: 1px solid #d5ddeb;
+    border-radius: 10px;
+    background: #f9fbff;
+    color: #172b4d;
+    font: inherit;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+#progressUpdateForm textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+#progressUpdateForm textarea:focus,
+#progressUpdateForm input[type="date"]:focus {
+    outline: none;
+    border-color: #073bce;
+    box-shadow: 0 0 0 3px rgba(7, 59, 206, 0.12);
+}
+
+#progressUpdateForm button {
+    align-self: flex-start;
+    padding: 12px 22px;
+    border: none;
+    border-radius: 9px;
+    background: #073bce;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+}
+
+#progressUpdateForm button:hover {
+    background: #052da0;
+    transform: translateY(-1px);
+}
+
+.progress-history {
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid #e5eaf3;
+}
+
+.progress-update-item {
+    margin-bottom: 16px;
+    padding: 20px;
+    border-left: 4px solid #073bce;
+    border-radius: 10px;
+    background: #f5f8ff;
+}
+
+.progress-update-item p {
+    margin: 0 0 10px;
+    color: #263650;
+    line-height: 1.6;
+    overflow-wrap: anywhere;
+}
+
+.progress-update-item small {
+    display: block;
+    margin-top: 8px;
+    color: #64748b;
+    font-size: 13px;
 }

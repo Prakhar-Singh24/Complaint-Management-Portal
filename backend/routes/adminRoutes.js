@@ -26,6 +26,22 @@ router.put(
     adminController.updateComplaintStatus
 );
 
+// Update Complaint Department
+router.put(
+    "/complaints/:id/department",
+    auth,
+    isAdmin,
+    adminController.updateComplaintDepartment
+);
+
+// Update Progress Comment
+router.post(
+    "/complaints/:id/progress",
+    auth,
+    isAdmin,
+    adminController.addProgressUpdate
+);
+
 // Delete Complaint
 router.delete(
     "/complaints/:id",

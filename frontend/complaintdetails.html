@@ -136,6 +136,54 @@
 
         </div>
 
+        <!-- Complaint Progress Updates -->
+        <div class="details-card progress-updates-card">
+
+            <h2>Complaint Progress Updates</h2>
+
+            <!-- Add Progress Update Form -->
+            <form id="progressUpdateForm">
+
+                <div class="form-group">
+
+                    <label for="progressMessage">
+                        Progress Message
+                    </label>
+
+                    <textarea id="progressMessage" name="message" rows="4" maxlength="1000"
+                        placeholder="Enter progress details..." required></textarea>
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="estimatedResolutionDate">
+                        Estimated Resolution Date
+                    </label>
+
+                    <input type="date" id="estimatedResolutionDate" name="estimatedResolutionDate" required>
+
+                </div>
+
+                <button type="submit" class="register">
+                    Add Progress Update
+                </button>
+
+            </form>
+
+            <!-- Progress History -->
+            <div class="progress-history">
+
+                <h3>Update History</h3>
+
+                <div id="progressUpdatesList">
+                    <p>Loading progress updates...</p>
+                </div>
+
+            </div>
+
+        </div>
+
         <!-- Action Buttons -->
         <div class="details-actions">
 

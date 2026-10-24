@@ -1445,6 +1445,8 @@ if (trackBtn) {
 
             const complaint = data.complaint;
 
+            renderUserProgressUpdates(complaint);
+
             document.getElementById("trackId").innerText =
                 complaint.complaintId;
 
@@ -2036,94 +2038,211 @@ function renderComplaintTable() {
 
     complaintTable.innerHTML = "";
 
-    if (complaintTable) {
+    if (complaints.length === 0) {
 
-        complaintTable.innerHTML = "";
+        complaintTable.innerHTML = `
+            <tr>
+                <td colspan="7">
+                    No Complaints Found
+                </td>
+            </tr>
+        `;
 
-        if (complaints.length === 0) {
+        return;
+    }
 
-            complaintTable.innerHTML = `
-                <tr>
-                    <td colspan="6">
-                        No Complaints Found
-                    </td>
-                </tr>
-            `;
+    const departments = [
+        "Electricity Department",
+        "Water Supply Department",
+        "Roads & Transport Department",
+        "Sanitation Department",
+        "IT Department",
+        "Public Works Department",
+        "Security Department",
+        "Administration Department",
+        "Support Department",
+        "Unassigned"
+    ];
 
-            return
+    complaints.forEach((complaint) => {
+
+        const departmentOptions = departments.map(department => `
+            <option value="${department}"
+                ${complaint.assignedDepartment === department
+                ? "selected"
+                : ""}>
+                ${department}
+            </option>
+        `).join("");
+
+        const departmentControl =
+            complaint.status === "Pending"
+                ? `
+            <select
+                class="departmentDropdown"
+                data-id="${complaint._id}">
+                ${departmentOptions}
+            </select>
+        `
+                : `
+            <span>
+                ${complaint.assignedDepartment || "Unassigned"}
+            </span>
+        `;
+
+        complaintTable.innerHTML += `
+            <tr>
+
+                <td>${complaint.complaintId}</td>
+
+                <td>
+                    ${complaint.user
+                ? complaint.user.name
+                : "Deleted User"}
+                </td>
+
+                <td>
+                    ${categoryNames[complaint.category] || complaint.category}
+                </td>
+
+                <td>
+                    ${departmentControl}
+                </td>
+
+                <td>
+                    <select
+                        class="statusDropdown"
+                        data-id="${complaint._id}">
+
+                        <option value="Pending"
+                            ${complaint.status === "Pending"
+                ? "selected" : ""}>
+                            Pending
+                        </option>
+
+                        <option value="In Progress"
+                            ${complaint.status === "In Progress"
+                ? "selected" : ""}>
+                            In Progress
+                        </option>
+
+                        <option value="Resolved"
+                            ${complaint.status === "Resolved"
+                ? "selected" : ""}>
+                            Resolved
+                        </option>
+
+                    </select>
+                </td>
+
+                <td>
+                    ${new Date(complaint.createdAt).toLocaleDateString()}
+                </td>
+
+                <td>
+                    <div class="action-buttons">
+
+                        <button
+                            class="view-btn"
+                            data-id="${complaint._id}">
+                            View
+                        </button>
+
+                        <button
+                            class="resolve-btn"
+                            data-id="${complaint._id}">
+                            Update
+                        </button>
+
+                        <button
+                            class="delete-complaint-btn"
+                            data-id="${complaint._id}">
+                            Delete
+                        </button>
+
+                    </div>
+                </td>
+
+            </tr>
+        `;
+    });
+}
+
+
+// Update Complaint Department (Admin Dashboard)
+document.addEventListener("click", async function (e) {
+
+    if (!e.target.classList.contains("update-department-btn")) {
+        return;
+    }
+
+    const complaintId = e.target.dataset.id;
+
+    const departmentDropdown = document.querySelector(
+        `.departmentDropdown[data-id="${complaintId}"]`
+    );
+
+    if (!departmentDropdown) return;
+
+    const assignedDepartment = departmentDropdown.value;
+
+    const confirmUpdate = confirm(
+        `Reassign this complaint to ${assignedDepartment}?`
+    );
+
+    if (!confirmUpdate) return;
+
+    const updateButton = e.target;
+
+    try {
+
+        updateButton.disabled = true;
+        updateButton.textContent = "Updating...";
+
+        const response = await fetch(
+            `https://complaint-management-portal-m8jc.onrender.com/api/admin/complaints/${complaintId}/department`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${localStorage.getItem("token")}`
+                },
+                body: JSON.stringify({
+                    assignedDepartment: assignedDepartment
+                })
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok) {
+
+            if (handleAuthError(data.message)) {
+                return;
+            }
+
+            throw new Error(data.message || "Failed to update department.");
         }
 
-        complaints.forEach((complaint, index) => {
+        alert("Complaint department updated successfully!");
 
-            complaintTable.innerHTML += `
-                    <tr>
+        // Refresh complaints from the backend
+        await loadComplaints();
 
-                        <td>${complaint.complaintId}</td>
+    } catch (error) {
 
-                        <td>${complaint.user ? complaint.user.name : "Deleted User"}</td>
+        console.error("Department update error:", error);
 
-                        <td>${categoryNames[complaint.category]}</td>
+        alert(error.message || "Unable to update department.");
 
-                        <td>
+    } finally {
 
-                            <select
-                                class="statusDropdown"
-                                data-id="${complaint._id}">
+        updateButton.disabled = false;
+        updateButton.textContent = "Update Department";
 
-                                <option value="Pending"
-                                ${complaint.status === "Pending"
-                    ? "selected" : ""}>
-                                    Pending
-                                </option>
-
-                                <option value="In Progress"
-                                ${complaint.status === "In Progress"
-                    ? "selected" : ""}>
-                                    In Progress
-                                </option>
-
-                                <option value="Resolved"
-                                ${complaint.status === "Resolved"
-                    ? "selected" : ""}>
-                                    Resolved
-                                </option>
-
-                            </select>
-
-                        </td>
-
-                        <td>${new Date(complaint.createdAt).toLocaleDateString()}</td>
-
-                        <td>
-
-                        <div class="action-buttons">
-
-                            <button 
-                                class="view-btn"
-                                data-id="${complaint._id}">
-                                View
-                            </button>
-
-                            <button
-                                class="resolve-btn"
-                                data-id="${complaint._id}">
-                                Update
-                            </button>
-
-                            <button
-                                class="delete-complaint-btn"
-                                data-id="${complaint._id}">
-                                Delete
-                            </button>
-
-                            </div>
-                        </td>
-
-                    </tr>
-                `;
-        });
     }
-}
+
+});
 
 
 function updateComplaintStats() {
@@ -2385,69 +2504,104 @@ async function loadUserDetails() {
 }
 
 
-// Update Status (Admin Page)
+// Update Status and Department (Admin Page)
 document.addEventListener("click", async function (e) {
 
     if (!e.target.classList.contains("resolve-btn")) return;
 
+    const updateButton = e.target;
+
     try {
 
-        const complaintId =
-            e.target.dataset.id;
+        const complaintId = updateButton.dataset.id;
 
-        const dropdown =
-            document.querySelector(
-                `.statusDropdown[data-id="${complaintId}"]`
-            );
+        const statusDropdown = document.querySelector(
+            `.statusDropdown[data-id="${complaintId}"]`
+        );
 
-        const status =
-            dropdown.value;
+        const departmentDropdown = document.querySelector(
+            `.departmentDropdown[data-id="${complaintId}"]`
+        );
 
-        const token =
-            localStorage.getItem("token");
+        if (!statusDropdown) {
+            throw new Error("Status dropdown not found.");
+        }
 
-        const response =
-            await fetch(
-                `https://complaint-management-portal-m8jc.onrender.com/api/admin/complaints/${complaintId}/status`,
+        const status = statusDropdown.value;
+        const token = localStorage.getItem("token");
+
+        updateButton.disabled = true;
+        updateButton.textContent = "Updating...";
+
+        // Update complaint status
+        const statusResponse = await fetch(
+            `https://complaint-management-portal-m8jc.onrender.com/api/admin/complaints/${complaintId}/status`,
+            {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify({ status })
+            }
+        );
+
+        const statusData = await statusResponse.json();
+
+        if (!statusResponse.ok) {
+
+            if (handleAuthError(statusData.message)) {
+                return;
+            }
+
+            throw new Error(statusData.message);
+        }
+
+        // Update department only if the complaint is Pending
+        if (status === "Pending" && departmentDropdown) {
+
+            const assignedDepartment = departmentDropdown.value;
+
+            const departmentResponse = await fetch(
+                `https://complaint-management-portal-m8jc.onrender.com/api/admin/complaints/${complaintId}/department`,
                 {
                     method: "PUT",
-
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: `Bearer ${token}`
                     },
-
-                    body: JSON.stringify({
-                        status
-                    })
+                    body: JSON.stringify({ assignedDepartment })
                 }
             );
 
-        const data =
-            await response.json();
+            const departmentData = await departmentResponse.json();
 
-        if (!response.ok) {
+            if (!departmentResponse.ok) {
 
-            if (handleAuthError(data.message)) {
-                return;
+                if (handleAuthError(departmentData.message)) {
+                    return;
+                }
+
+                throw new Error(departmentData.message);
             }
-
-            throw new Error(data.message);
-
         }
 
-        alert(data.message);
+        alert("Complaint updated successfully!");
 
-        loadComplaints();
+        await loadComplaints();
 
-    }
+    } catch (error) {
 
-    catch (error) {
+        console.error("Complaint update error:", error);
 
-        console.log(error);
+        alert(error.message || "Failed to update complaint.");
 
-        alert(error.message);
+        await loadComplaints();
 
+    } finally {
+
+        updateButton.disabled = false;
+        updateButton.textContent = "Update";
     }
 
 });
@@ -2636,6 +2790,8 @@ async function loadUserComplaintDetails() {
         const complaint =
             data.complaint;
 
+        renderUserProgressUpdates(complaint);
+
         document.getElementById("detailComplaintId").innerText =
             complaint.complaintId;
 
@@ -2690,10 +2846,69 @@ async function loadUserComplaintDetails() {
 }
 
 
+// Display Progress Updates (User View)
+function renderUserProgressUpdates(complaint) {
+
+    const updatesContainer =
+        document.getElementById("userProgressUpdatesList");
+
+    if (!updatesContainer) return;
+
+    const updates = complaint.progressUpdates || [];
+
+    if (updates.length === 0) {
+        updatesContainer.innerHTML =
+            "<p>No progress updates available yet.</p>";
+        return;
+    }
+
+    updatesContainer.innerHTML = "";
+
+    // Display newest updates first
+    updates.slice().reverse().forEach(update => {
+
+        const updateCard = document.createElement("div");
+        updateCard.className = "progress-update-item";
+
+        const message = document.createElement("p");
+        message.textContent = update.message;
+
+        const timestamp = document.createElement("small");
+        timestamp.textContent =
+            `Updated: ${new Date(update.createdAt).toLocaleString()}`;
+
+        updateCard.appendChild(message);
+        updateCard.appendChild(timestamp);
+
+        if (update.estimatedResolutionDate) {
+
+            const estimatedDate = document.createElement("p");
+
+            estimatedDate.textContent =
+                `Estimated Resolution: ${new Date(update.estimatedResolutionDate)
+                    .toLocaleDateString()
+                }`;
+
+            updateCard.appendChild(estimatedDate);
+        }
+
+        updatesContainer.appendChild(updateCard);
+
+    });
+}
+
+
 // Complaint Details (Admin View)
 if (currentPage === "complaintdetails.html") {
 
     loadAdminComplaintDetails();
+    loadProgressUpdates();
+
+    const progressUpdateForm = document.getElementById("progressUpdateForm");
+
+    if (progressUpdateForm) {
+        progressUpdateForm.addEventListener("submit", addProgressUpdate);
+    }
 
 }
 
@@ -2747,6 +2962,8 @@ async function loadAdminComplaintDetails() {
 
         const complaint =
             data.complaint;
+
+        setDefaultProgressValues(complaint);
 
         document.getElementById("detailComplaintId").innerText =
             complaint.complaintId;
@@ -3004,3 +3221,198 @@ document.querySelectorAll(".toggle-password")
         });
 
     });
+
+
+// Add Progress Update (Admin)
+async function addProgressUpdate(e) {
+    e.preventDefault();
+
+    const params = new URLSearchParams(window.location.search);
+    const complaintId = params.get("id");
+    const token = localStorage.getItem("token");
+
+    const message = document.getElementById("progressMessage").value.trim();
+    const estimatedResolutionDate =
+        document.getElementById("estimatedResolutionDate").value;
+
+    if (!message) {
+        alert("Please enter a progress message.");
+        return;
+    }
+
+    const requestBody = {
+        message,
+        estimatedResolutionDate: estimatedResolutionDate || null
+    };
+
+    try {
+        const response = await fetch(
+            `https://complaint-management-portal-m8jc.onrender.com/api/admin/complaints/${complaintId}/progress`,
+            {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${token}`
+                },
+                body: JSON.stringify(requestBody)
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            if (handleAuthError(data.message)) return;
+
+            alert(data.message || "Failed to add progress update.");
+            return;
+        }
+
+        alert("Progress update added successfully!");
+
+        document.getElementById("progressMessage").value = "";
+        document.getElementById("estimatedResolutionDate").value = "";
+
+        await loadAdminComplaintDetails();
+        await loadProgressUpdates();
+
+    } catch (error) {
+        console.error("Error adding progress update:", error);
+        alert("Unable to connect to the server.");
+    }
+}
+
+
+// Load Progress Updates (Admin)
+async function loadProgressUpdates() {
+    const params = new URLSearchParams(window.location.search);
+    const complaintId = params.get("id");
+    const token = localStorage.getItem("token");
+
+    const updatesContainer = document.getElementById("progressUpdatesList");
+
+    if (!updatesContainer) return;
+
+    try {
+        const response = await fetch(
+            `https://complaint-management-portal-m8jc.onrender.com/api/complaints/${complaintId}`,
+            {
+                headers: {
+                    Authorization: `Bearer ${token}`
+                }
+            }
+        );
+
+        const data = await response.json();
+
+        if (!response.ok || !data.success) {
+            updatesContainer.innerHTML =
+                "<p>Unable to load progress updates.</p>";
+            return;
+        }
+
+        const updates = data.complaint.progressUpdates || [];
+
+        if (updates.length === 0) {
+            updatesContainer.innerHTML =
+                "<p>No progress updates have been added yet.</p>";
+            return;
+        }
+
+        updatesContainer.innerHTML = "";
+
+        updates.slice().reverse().forEach(update => {
+            const updateCard = document.createElement("div");
+            updateCard.className = "progress-update-item";
+
+            const message = document.createElement("p");
+            message.textContent = update.message;
+
+            const timestamp = document.createElement("small");
+            timestamp.textContent =
+                `Updated: ${new Date(update.createdAt).toLocaleString()}`;
+
+            updateCard.appendChild(message);
+            updateCard.appendChild(timestamp);
+
+            if (update.estimatedResolutionDate) {
+                const estimatedDate = document.createElement("p");
+                estimatedDate.textContent =
+                    `Estimated Resolution: ${new Date(update.estimatedResolutionDate)
+                        .toLocaleDateString()
+                    }`;
+
+                updateCard.appendChild(estimatedDate);
+            }
+
+            updatesContainer.appendChild(updateCard);
+        });
+
+    } catch (error) {
+        console.error("Error loading progress updates:", error);
+
+        updatesContainer.innerHTML =
+            "<p>Unable to connect to the server.</p>";
+    }
+}
+
+
+// Generate Default Progress Message
+function setDefaultProgressValues(complaint) {
+
+    const messageElement =
+        document.getElementById("progressMessage");
+
+    const dateElement =
+        document.getElementById("estimatedResolutionDate");
+
+    if (!messageElement || !dateElement) return;
+
+    const department = complaint.assignedDepartment || "Support Department";
+
+    const messageTemplates = {
+        "Electricity Department":
+            "The electricity department has been notified. Inspection is scheduled.",
+
+        "Water Supply Department":
+            "The Water Supply department has been notified. Inspection is scheduled.",
+
+        "Roads & Transport Department":
+            "The Roads & Transport department has been notified. Inspection is scheduled.",
+
+        "Sanitation Department":
+            "The Sanitation department has been notified. Inspection is scheduled.",
+
+        "IT Department":
+            "The IT department has been notified. Inspection is scheduled.",
+
+        "Public Works Department":
+            "The Public Works department has been notified. Inspection is scheduled.",
+
+        "Security Department":
+            "The Security department has been notified. Inspection is scheduled.",
+
+        "Administration Department":
+            "The Administration department has been notified. Inspection is scheduled.",
+
+        "Support Department":
+            "The Support department has been notified. Inspection is scheduled.",
+
+        "Unassigned":
+            "The relevant department has been notified. Inspection is scheduled."
+    };
+
+    messageElement.value =
+        messageTemplates[department] ||
+        "The relevant department has been notified. Inspection is scheduled.";
+
+    // Default estimated resolution date: 3 days from today
+    const estimatedDate = new Date();
+
+    estimatedDate.setDate(estimatedDate.getDate() + 3);
+
+    const year = estimatedDate.getFullYear();
+    const month = String(estimatedDate.getMonth() + 1).padStart(2, "0");
+    const day = String(estimatedDate.getDate()).padStart(2, "0");
+
+    dateElement.value = `${year}-${month}-${day}`;
+}

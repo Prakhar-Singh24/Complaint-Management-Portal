@@ -38,6 +38,21 @@ exports.index = (req, res) => {
 };
 
 
+// Category-to-department mapping
+const departmentMapping = {
+    "electricity": "Electricity Department",
+    "water": "Water Supply Department",
+    "road": "Roads & Transport Department",
+    "sanitation": "Sanitation Department",
+    "internet": "IT Department",
+    "streetlight": "Electricity Department",
+    "public-property": "Public Works Department",
+    "security": "Security Department",
+    "administration": "Administration Department",
+    "other": "Support Department"
+};
+
+
 // Create Complaints
 exports.create = async (req, res) => {
 
@@ -85,6 +100,9 @@ exports.create = async (req, res) => {
         const complaintId =
             `CMP${datePart}${String(complaintNumber).padStart(3, "0")}`;
 
+        const assignedDepartment =
+            departmentMapping[category.trim().toLowerCase()] || "Unassigned";
+
         const complaint = await Complaint.create({
 
             complaintId,
@@ -94,6 +112,8 @@ exports.create = async (req, res) => {
             title,
 
             category,
+
+            assignedDepartment,
 
             description
 
@@ -128,7 +148,7 @@ exports.create = async (req, res) => {
 };
 
 
-// Show
+// Show Complaint Details
 exports.show = async (req, res) => {
 
     try {
@@ -146,7 +166,8 @@ exports.show = async (req, res) => {
         }
 
         const complaint = await Complaint.findById(id)
-            .populate("user", "name email phone");
+            .populate("user", "name email phone")
+            .populate("progressUpdates.updatedBy", "name");
 
         if (!complaint) {
 
@@ -154,7 +175,18 @@ exports.show = async (req, res) => {
                 success: false,
                 message: "Complaint not found"
             });
+        }
 
+        // Allow admins to view any complaint.
+        // Regular users can view only their own complaints.
+        if (
+            req.user.role !== "admin" &&
+            complaint.user._id.toString() !== req.user.id
+        ) {
+            return res.status(403).json({
+                success: false,
+                message: "Access Denied"
+            });
         }
 
         return res.status(200).json({
@@ -162,11 +194,8 @@ exports.show = async (req, res) => {
             complaint
         });
 
-    }
-
-    catch (error) {
-
-        console.log(error);
+    } catch (error) {
+        console.error(error);
 
         return res.status(500).json({
             success: false,

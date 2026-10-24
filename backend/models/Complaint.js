@@ -36,6 +36,16 @@ const complaintSchema = new mongoose.Schema({
 
     },
 
+    assignedDepartment: {
+
+        type: String,
+
+        default: "Unassigned",
+
+        trim: true
+
+    },
+
     description: {
 
         type: String,
@@ -56,7 +66,34 @@ const complaintSchema = new mongoose.Schema({
 
         default: "Pending"
 
-    }
+    },
+
+    progressUpdates: [
+        {
+            message: {
+                type: String,
+                required: true,
+                trim: true,
+                maxlength: 1000
+            },
+
+            estimatedResolutionDate: {
+                type: Date,
+                default: null
+            },
+
+            updatedBy: {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: "User",
+                required: true
+            },
+
+            createdAt: {
+                type: Date,
+                default: Date.now
+            }
+        }
+    ]
 
 }, {
 
