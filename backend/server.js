@@ -34,6 +34,8 @@ app.use("/api/complaints", complaintRoutes);
 
 app.use("/api/admin", adminRoutes);
 
+app.use("/api/contact", contactRoutes);
+
 app.get("/", (req, res) => {
     res.send("Complaint Management API Running");
 });
