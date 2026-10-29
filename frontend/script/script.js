@@ -3446,7 +3446,7 @@ if (contactForm) {
         submitButton.textContent = "Sending...";
 
         try {
-            const response = await fetch("http://localhost:5000/api/contact", {
+            const response = await fetch("https://complaint-management-portal-m8jc.onrender.com/api/contact", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -3519,7 +3519,7 @@ if (messagesTableBody) {
 
         try {
             const response = await fetch(
-                "http://localhost:5000/api/contact/admin/messages",
+                "https://complaint-management-portal-m8jc.onrender.com/api/contact/admin/messages",
                 {
                     method: "GET",
                     headers: {
@@ -3621,7 +3621,7 @@ if (messagesTableBody) {
 
                     try {
                         const response = await fetch(
-                            `http://localhost:5000/api/contact/admin/messages/${encodeURIComponent(message._id)}`,
+                            `https://complaint-management-portal-m8jc.onrender.com/api/contact/admin/messages/${encodeURIComponent(message._id)}`,
                             {
                                 method: "DELETE",
                                 headers: {
@@ -3728,7 +3728,7 @@ if (messageDetailsCard) {
 
         try {
             const response = await fetch(
-                `http://localhost:5000/api/contact/admin/messages/${encodeURIComponent(messageId)}`,
+                `https://complaint-management-portal-m8jc.onrender.com/api/contact/admin/messages/${encodeURIComponent(messageId)}`,
                 {
                     method: "GET",
                     headers: {
@@ -3795,7 +3795,7 @@ if (unreadMessagesCountElement) {
 
         try {
             const response = await fetch(
-                "http://localhost:5000/api/contact/admin/unread-count",
+                "https://complaint-management-portal-m8jc.onrender.com/api/contact/admin/unread-count",
                 {
                     method: "GET",
                     headers: {
