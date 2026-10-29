@@ -102,7 +102,7 @@
             <!-- Right Side -->
             <div class="user-information">
 
-                <form>
+                <form id="contactForm">
 
                     <div class="contact-form-row">
 
@@ -110,7 +110,8 @@
 
                             <label>Full Name</label>
 
-                            <input type="text" placeholder="Enter your name">
+                            <input type="text" id="contactName" name="name" placeholder="Enter your name" required
+                                maxlength="100">
 
                         </div>
 
@@ -118,7 +119,8 @@
 
                             <label>Email Address</label>
 
-                            <input type="email" placeholder="Enter your email">
+                            <input type="email" id="contactEmail" name="email" placeholder="Enter your email" required
+                                maxlength="254">
 
                         </div>
 
@@ -128,7 +130,8 @@
 
                         <label>Subject</label>
 
-                        <input type="text" placeholder="Enter subject">
+                        <input type="text" id="contactSubject" name="subject" placeholder="Enter subject" required
+                            maxlength="150">
 
                     </div>
 
@@ -136,7 +139,8 @@
 
                         <label>Message</label>
 
-                        <textarea class="description" rows="7" placeholder="Write your message here..."></textarea>
+                        <textarea class="description" id="contactMessage" name="message" rows="7"
+                            placeholder="Write your message here..." required maxlength="2000"></textarea>
 
                     </div>
 
@@ -148,6 +152,8 @@
                     </button>
 
                 </form>
+
+                <p id="contactFormMessage" role="status" aria-live="polite"></p>
 
             </div>
 

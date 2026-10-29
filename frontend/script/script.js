@@ -314,7 +314,9 @@ const adminpages = [
     "admindashboard.html",
     "complaintdetails.html",
     "userdetails.html",
-    "reports.html"
+    "reports.html",
+    "messages.html",
+    "message-details.html"
 ]
 
 if (adminpages.includes(currentPage)) {
@@ -1481,7 +1483,7 @@ if (trackBtn) {
                 new Date(complaint.createdAt).toLocaleDateString();
 
             document.getElementById("trackDepartment").innerText =
-                "Support Department";
+                complaint.assignedDepartment || "Unassigned";
 
         }
 
@@ -3415,4 +3417,413 @@ function setDefaultProgressValues(complaint) {
     const day = String(estimatedDate.getDate()).padStart(2, "0");
 
     dateElement.value = `${year}-${month}-${day}`;
+}
+
+
+// Contact Form Submission
+const contactForm = document.getElementById("contactForm");
+
+if (contactForm) {
+    contactForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const name = document.getElementById("contactName").value.trim();
+        const email = document.getElementById("contactEmail").value.trim();
+        const subject = document.getElementById("contactSubject").value.trim();
+        const message = document.getElementById("contactMessage").value.trim();
+
+        const statusElement = document.getElementById("contactFormMessage");
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+
+        statusElement.textContent = "";
+
+        if (!name || !email || !subject || !message) {
+            statusElement.textContent = "Please fill in all fields.";
+            return;
+        }
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Sending...";
+
+        try {
+            const response = await fetch("http://localhost:5000/api/contact", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name,
+                    email,
+                    subject,
+                    message
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                throw new Error(data.message || "Failed to send your message.");
+            }
+
+            alert(data.message);
+            contactForm.reset();
+
+        } catch (error) {
+            console.error("Contact form error:", error);
+            statusElement.textContent =
+                error.message || "Unable to send your message. Please try again.";
+
+        } finally {
+            submitButton.disabled = false;
+            submitButton.textContent = "Send Message";
+        }
+    });
+}
+
+
+// Open Admin Messages
+const adminMessagesBtn = document.getElementById("adminMessagesBtn");
+
+if (adminMessagesBtn) {
+    adminMessagesBtn.addEventListener("click", function () {
+        window.location.href = "messages.html";
+    });
+}
+
+
+/* ADMIN CONTACT MESSAGES */
+const messagesTableBody = document.getElementById("messagesTableBody");
+
+if (messagesTableBody) {
+    const messagesStatus = document.getElementById("messagesStatus");
+    const totalMessagesElement = document.getElementById("totalMessages");
+    const unreadMessagesElement = document.getElementById("unreadMessages");
+    const refreshMessagesBtn = document.getElementById("refreshMessagesBtn");
+
+    async function loadContactMessages() {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            messagesStatus.textContent = "Please log in as an administrator.";
+            messagesTableBody.innerHTML = `
+            <tr>
+                <td colspan="6">Authentication required.</td>
+            </tr>
+        `;
+            return;
+        }
+
+        refreshMessagesBtn.disabled = true;
+        refreshMessagesBtn.textContent = "Refreshing...";
+        messagesStatus.textContent = "Loading messages...";
+
+        try {
+            const response = await fetch(
+                "http://localhost:5000/api/contact/admin/messages",
+                {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                throw new Error(data.message || "Unable to load messages.");
+            }
+
+            const messages = data.messages || [];
+
+            totalMessagesElement.textContent = messages.length;
+
+            const unreadCount = messages.filter(
+                message => message.status === "Unread"
+            ).length;
+
+            unreadMessagesElement.textContent = unreadCount;
+
+            if (messages.length === 0) {
+                messagesTableBody.innerHTML = `
+                <tr>
+                    <td colspan="6">No contact messages found.</td>
+                </tr>
+            `;
+
+                messagesStatus.textContent = "Your inbox is empty.";
+                return;
+            }
+
+            messagesTableBody.innerHTML = "";
+
+            messages.forEach(message => {
+                const row = document.createElement("tr");
+
+                const nameCell = document.createElement("td");
+                nameCell.textContent = message.name;
+
+                const subjectCell = document.createElement("td");
+                subjectCell.textContent = message.subject;
+
+                const emailCell = document.createElement("td");
+                emailCell.textContent = message.email;
+
+                const statusCell = document.createElement("td");
+                const statusBadge = document.createElement("span");
+
+                statusBadge.className =
+                    `message-status ${String(message.status).toLowerCase()}`;
+
+                statusBadge.textContent = message.status;
+                statusCell.appendChild(statusBadge);
+
+                const dateCell = document.createElement("td");
+
+                dateCell.textContent = message.createdAt
+                    ? new Date(message.createdAt).toLocaleDateString()
+                    : "N/A";
+
+                const actionCell = document.createElement("td");
+
+                // Open button
+                const openButton = document.createElement("button");
+
+                openButton.type = "button";
+                openButton.className = "open-message-btn";
+                openButton.textContent = "Open";
+
+                openButton.addEventListener("click", function () {
+                    window.location.href =
+                        `message-details.html?id=${encodeURIComponent(message._id)}`;
+                });
+
+                // Delete button
+                const deleteButton = document.createElement("button");
+
+                deleteButton.type = "button";
+                deleteButton.className = "delete-message-btn";
+                deleteButton.textContent = "Delete";
+
+                deleteButton.addEventListener("click", async function () {
+                    const confirmed = confirm(
+                        `Are you sure you want to delete the message from ${message.name}?`
+                    );
+
+                    if (!confirmed) {
+                        return;
+                    }
+
+                    const token = localStorage.getItem("token");
+
+                    deleteButton.disabled = true;
+                    deleteButton.textContent = "Deleting...";
+
+                    try {
+                        const response = await fetch(
+                            `http://localhost:5000/api/contact/admin/messages/${encodeURIComponent(message._id)}`,
+                            {
+                                method: "DELETE",
+                                headers: {
+                                    "Authorization": `Bearer ${token}`
+                                }
+                            }
+                        );
+
+                        const data = await response.json();
+
+                        if (!response.ok || !data.success) {
+                            throw new Error(
+                                data.message || "Unable to delete message."
+                            );
+                        }
+
+                        messagesStatus.textContent =
+                            "Message deleted successfully.";
+
+                        // Reload the inbox and update the message counts
+                        await loadContactMessages();
+
+                    } catch (error) {
+                        console.error("Delete contact message error:", error);
+
+                        messagesStatus.textContent = error.message;
+
+                        deleteButton.disabled = false;
+                        deleteButton.textContent = "Delete";
+                    }
+                });
+
+                actionCell.append(openButton, deleteButton);
+
+                row.append(
+                    nameCell,
+                    subjectCell,
+                    emailCell,
+                    statusCell,
+                    dateCell,
+                    actionCell
+                );
+
+                messagesTableBody.appendChild(row);
+            });
+
+            messagesStatus.textContent =
+                `${messages.length} message(s) loaded successfully.`;
+
+        } catch (error) {
+            console.error("Load contact messages error:", error);
+
+            messagesStatus.textContent = error.message;
+
+            messagesTableBody.innerHTML = `
+            <tr>
+                <td colspan="6">Unable to load messages.</td>
+            </tr>
+        `;
+
+        } finally {
+            refreshMessagesBtn.disabled = false;
+            refreshMessagesBtn.textContent = "Refresh Messages";
+        }
+    }
+
+    refreshMessagesBtn.addEventListener("click", loadContactMessages);
+
+    loadContactMessages();
+
+}
+
+
+/* ADMIN MESSAGE DETAILS */
+const messageDetailsCard = document.getElementById("messageDetailsCard");
+
+if (messageDetailsCard) {
+    const messageDetailsStatus = document.getElementById("messageDetailsStatus");
+    const backToMessagesBtn = document.getElementById("backToMessagesBtn");
+
+    backToMessagesBtn.addEventListener("click", function () {
+        window.location.href = "messages.html";
+    });
+
+    async function loadMessageDetails() {
+        const token = localStorage.getItem("token");
+
+        const params = new URLSearchParams(window.location.search);
+        const messageId = params.get("id");
+
+        if (!token) {
+            messageDetailsStatus.textContent =
+                "Authentication required. Please log in as an administrator.";
+            return;
+        }
+
+        if (!messageId) {
+            messageDetailsStatus.textContent =
+                "Message ID is missing from the URL.";
+            return;
+        }
+
+        messageDetailsStatus.textContent = "Loading message...";
+
+        try {
+            const response = await fetch(
+                `http://localhost:5000/api/contact/admin/messages/${encodeURIComponent(messageId)}`,
+                {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                throw new Error(data.message || "Unable to load the message.");
+            }
+
+            const message = data.contactMessage;
+
+            document.getElementById("detailName").textContent =
+                message.name || "N/A";
+
+            document.getElementById("detailEmail").textContent =
+                message.email || "N/A";
+
+            document.getElementById("detailSubject").textContent =
+                message.subject || "N/A";
+
+            document.getElementById("detailDate").textContent =
+                message.createdAt
+                    ? new Date(message.createdAt).toLocaleString()
+                    : "N/A";
+
+            document.getElementById("detailMessage").textContent =
+                message.message || "";
+
+            document.getElementById("detailStatus").textContent =
+                message.status || "N/A";
+
+            messageDetailsCard.hidden = false;
+            messageDetailsStatus.textContent = "Message loaded successfully.";
+
+        } catch (error) {
+            console.error("Load message details error:", error);
+            messageDetailsStatus.textContent = error.message;
+        }
+    }
+
+    loadMessageDetails();
+
+}
+
+
+// Admin Dashboard: Update unread contact message count
+const unreadMessagesCountElement =
+    document.getElementById("unreadMessagesCount");
+
+if (unreadMessagesCountElement) {
+
+    async function updateUnreadMessagesCount() {
+        const token = localStorage.getItem("token");
+
+        if (!token) {
+            unreadMessagesCountElement.textContent = "0";
+            return;
+        }
+
+        try {
+            const response = await fetch(
+                "http://localhost:5000/api/contact/admin/unread-count",
+                {
+                    method: "GET",
+                    headers: {
+                        "Authorization": `Bearer ${token}`
+                    }
+                }
+            );
+
+            const data = await response.json();
+
+            if (!response.ok || !data.success) {
+                throw new Error(
+                    data.message || "Unable to fetch unread messages."
+                );
+            }
+
+            unreadMessagesCountElement.textContent = data.count;
+
+        } catch (error) {
+            console.error(
+                "Unread message count error:",
+                error
+            );
+        }
+    }
+
+    updateUnreadMessagesCount();
+
+    // Refresh the count every 30 seconds
+    setInterval(updateUnreadMessagesCount, 30000);
 }

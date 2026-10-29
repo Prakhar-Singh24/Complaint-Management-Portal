@@ -1365,6 +1365,21 @@ td {
     transform: translateY(-2px);
 }
 
+.unread-message-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    margin-left: 6px;
+    padding: 0 6px;
+    border-radius: 50px;
+    background-color: #dc2626;
+    color: #ffffff;
+    font-size: 12px;
+    font-weight: 700;
+}
+
 
 /* Reports Page */
 .reports-page {
@@ -1709,4 +1724,335 @@ td,
     margin-top: 8px;
     color: #64748b;
     font-size: 13px;
+}
+
+
+/* ADMIN CONTACT MESSAGES */
+.messages-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 25px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.messages-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.messages-header h1 {
+    margin: 0 0 8px;
+    color: #1f2937;
+    font-size: 28px;
+}
+
+.messages-header p {
+    margin: 0;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+
+/* Refresh Contact Messages Button */
+.refresh-messages-btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    background-color: #2563eb;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.refresh-messages-btn:hover:not(:disabled) {
+    background-color: #1d4ed8;
+}
+
+.refresh-messages-btn:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+
+/* Summary cards */
+.messages-summary {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 20px;
+    margin-bottom: 25px;
+}
+
+.message-summary-card {
+    padding: 22px;
+    border: 1px solid #e5e7eb;
+    border-left: 5px solid #2563eb;
+    border-radius: 8px;
+    background: #f9fafb;
+}
+
+.message-summary-card h3 {
+    margin: 0 0 12px;
+    color: #6b7280;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.message-summary-card p {
+    margin: 0;
+    color: #111827;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+
+/* Status messages */
+#messagesStatus {
+    margin-bottom: 18px;
+    color: #374151;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+
+/* Messages table */
+.messages-table-container {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+.messages-table {
+    width: 100%;
+    min-width: 750px;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.messages-table th,
+.messages-table td {
+    padding: 15px 14px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 14px;
+}
+
+.messages-table th {
+    background: #f3f4f6;
+    color: #374151;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.messages-table td {
+    color: #4b5563;
+    overflow-wrap: anywhere;
+}
+
+.messages-table tbody tr {
+    background: #f9fafb;
+}
+
+.messages-table tbody tr td {
+    border-bottom: none;
+}
+
+.messages-table td[colspan="6"] {
+    padding: 30px;
+    text-align: center;
+    color: #6b7280;
+}
+
+
+/* Message status badges */
+.message-status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.message-status.unread {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+.message-status.read {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.message-status.replied {
+    background: #dcfce7;
+    color: #166534;
+}
+
+
+/* Open message button */
+.open-message-btn {
+    padding: 8px 13px;
+    border: none;
+    border-radius: 5px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.open-message-btn {
+    background: #1d4ed8;
+}
+
+
+/* MESSAGE DETAILS PAGE */
+.message-details-container {
+    min-height: 100vh;
+    background: #f5f8ff;
+    padding: 50px 80px;
+}
+
+.message-details-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.message-details-header h1 {
+    font-size: 38px;
+    color: #0d1b52;
+    margin: 0 0 10px;
+}
+
+.message-details-header p {
+    color: #666;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.message-back-btn {
+    padding: 12px 20px;
+    border: 1px solid #0033cc;
+    border-radius: 8px;
+    background: #ffffff;
+    color: #0033cc;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background 0.2s ease;
+}
+
+.message-back-btn:hover {
+    background: #eff6ff;
+}
+
+
+/* Loading and status message */
+#messageDetailsStatus {
+    margin: 25px 0;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+
+/* Main message card */
+.message-details-card {
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+}
+
+
+/* Individual information rows */
+.message-detail-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 30px;
+    padding: 18px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.message-detail-row:last-child {
+    border-bottom: none;
+}
+
+.message-detail-row strong {
+    flex: 0 0 180px;
+    color: #0d1b52;
+    font-size: 15px;
+    font-weight: 700;
+}
+
+.message-detail-row p {
+    flex: 1;
+    margin: 0;
+    color: #666;
+    font-size: 15px;
+    line-height: 1.8;
+    text-align: right;
+    overflow-wrap: anywhere;
+}
+
+
+/* Message content */
+.message-detail-row.message-content-row {
+    display: block;
+}
+
+.message-detail-row.message-content-row strong {
+    display: block;
+    margin-bottom: 15px;
+}
+
+.message-detail-row.message-content-row p {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    border: 1px solid #e5e5e5;
+    border-radius: 10px;
+    background: #f8faff;
+    text-align: left;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+
+/* Delete Contact Message Button */
+.delete-message-btn {
+    margin-left: 8px;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 6px;
+    background-color: #dc2626;
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.delete-message-btn:hover:not(:disabled) {
+    background-color: #b91c1c;
+}
+
+.delete-message-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
 }

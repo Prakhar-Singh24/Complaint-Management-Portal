@@ -16,6 +16,8 @@ require("dotenv").config();
 
 const authRoutes = require("./routes/authRoutes");
 
+const contactRoutes = require("./routes/contactRoutes");
+
 const app = express();
 
 // Connect Database

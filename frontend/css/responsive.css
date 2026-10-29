@@ -445,6 +445,54 @@
         width: 100%;
     }
 
+    .messages-container {
+        width: 94%;
+        margin: 25px auto;
+        padding: 18px;
+    }
+
+    .messages-header {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .messages-header h1 {
+        font-size: 24px;
+    }
+
+    .messages-summary {
+        gap: 12px;
+    }
+
+    .message-summary-card {
+        padding: 16px;
+    }
+
+    .message-summary-card p {
+        font-size: 26px;
+    }
+
+    .message-details-container {
+        padding: 35px 25px;
+    }
+
+    .message-details-header h1 {
+        font-size: 30px;
+    }
+
+    .message-details-card {
+        padding: 24px;
+    }
+
+    .message-detail-row {
+        gap: 20px;
+    }
+
+    .message-detail-row strong {
+        flex-basis: 140px;
+    }
+
 }
 
 
@@ -793,6 +841,74 @@
     }
 
     .progress-update-item {
+        padding: 15px;
+    }
+
+    .messages-container {
+        width: 100%;
+        margin: 15px auto;
+        padding: 14px;
+        border-radius: 0;
+    }
+
+    .messages-header h1 {
+        font-size: 22px;
+    }
+
+    .messages-header p {
+        font-size: 14px;
+    }
+
+    .messages-summary {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .message-summary-card {
+        padding: 15px;
+    }
+
+    #refreshMessagesBtn {
+        width: 100%;
+    }
+
+    .message-details-container {
+        padding: 25px 16px;
+    }
+
+    .message-details-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .message-details-header h1 {
+        font-size: 28px;
+    }
+
+    .message-back-btn {
+        width: 100%;
+    }
+
+    .message-details-card {
+        padding: 20px;
+    }
+
+    .message-detail-row {
+        flex-direction: column;
+        gap: 6px;
+        padding: 16px 0;
+    }
+
+    .message-detail-row strong {
+        flex: auto;
+    }
+
+    .message-detail-row p {
+        width: 100%;
+        text-align: left;
+    }
+
+    .message-detail-row.message-content-row p {
         padding: 15px;
     }
 

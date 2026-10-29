@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Message Details | Complaint Management Portal</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+
+        <nav class="navbar">
+            <div class="logo">
+                <img src="./images/logo.png" alt="Logo">
+                <div class="portal-name">
+                    <h2>Complaint</h2>
+                    <p>Management Portal</p>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <div class="buttons">
+                    <button class="login" id="dashboard">Dashboard</button>
+                    <button class="register" id="logout">Logout</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="message-details-container">
+
+        <div class="message-details-header">
+            <div>
+                <h1>Message Details</h1>
+                <p>Read the contact message submitted by the user.</p>
+            </div>
+
+            <button type="button" id="backToMessagesBtn" class="message-back-btn">
+                Back to Inbox
+            </button>
+        </div>
+
+        <div id="messageDetailsStatus" role="status" aria-live="polite">
+            Loading message...
+        </div>
+
+        <section id="messageDetailsCard" class="message-details-card" hidden>
+
+            <div class="message-detail-row">
+                <strong>Sender Name</strong>
+                <p id="detailName"></p>
+            </div>
+
+            <div class="message-detail-row">
+                <strong>Email Address</strong>
+                <p id="detailEmail"></p>
+            </div>
+
+            <div class="message-detail-row">
+                <strong>Subject</strong>
+                <p id="detailSubject"></p>
+            </div>
+
+            <div class="message-detail-row">
+                <strong>Submitted On</strong>
+                <p id="detailDate"></p>
+            </div>
+
+            <div class="message-detail-row message-content-row">
+                <strong>Message</strong>
+                <p id="detailMessage" class="message-content"></p>
+            </div>
+
+            <div class="message-detail-row">
+                <strong>Status</strong>
+                <p id="detailStatus"></p>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="details-actions">
+
+                <a href="./messages.html">
+                    <button class="view-btn" id="backToMessagesBtn">
+                        Back
+                    </button>
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script/script.js"></script>
+
+</body>
+
+</html>

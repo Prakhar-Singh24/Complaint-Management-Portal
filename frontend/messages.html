@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Messages | Complaint Management Portal</title>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <header>
+
+        <nav class="navbar">
+            <div class="logo">
+                <img src="./images/logo.png" alt="Logo">
+                <div class="portal-name">
+                    <h2>Complaint</h2>
+                    <p>Management Portal</p>
+                </div>
+            </div>
+
+            <div class="nav-right">
+                <div class="buttons">
+                    <button class="login" id="dashboard">Dashboard</button>
+                    <button class="register" id="logout">Logout</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="messages-container">
+
+        <div class="messages-header">
+            <div>
+                <h1>Contact Messages</h1>
+                <p>View and manage messages submitted through the Contact Us page.</p>
+            </div>
+
+            <button type="button" id="refreshMessagesBtn" class="refresh-messages-btn">
+                Refresh Messages
+            </button>
+        </div>
+
+        <div class="messages-summary">
+            <div class="message-summary-card">
+                <h3>Total Messages</h3>
+                <p id="totalMessages">0</p>
+            </div>
+
+            <div class="message-summary-card">
+                <h3>Unread Messages</h3>
+                <p id="unreadMessages">0</p>
+            </div>
+        </div>
+
+        <div id="messagesStatus" role="status" aria-live="polite"></div>
+
+        <div class="messages-table-container">
+            <table class="messages-table">
+
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Subject</th>
+                        <th>Email</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody id="messagesTableBody">
+                    <tr>
+                        <td colspan="6"> Loading messages... </td>
+                    </tr>
+                </tbody>
+
+            </table>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="details-actions">
+
+            <a href="./admindashboard.html">
+                <button class="view-btn" id="backToDashboardBtn">
+                    Back
+                </button>
+            </a>
+
+        </div>
+
+    </main>
+
+    <script src="script/script.js"></script>
+
+</body>
+
+</html>
